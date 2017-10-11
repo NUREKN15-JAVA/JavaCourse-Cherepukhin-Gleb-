@@ -1,6 +1,9 @@
 package ua.nure.kn155.cherepukhin.logic.bean;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,7 +22,7 @@ public class UserTest {
   }
 
   @Test
-  public void shouldReturnFullName() {
+  public void getFullNameShouldReturnFullName() {
     // given
     user.setFirstName("a");
     user.setLastName("b");
@@ -28,7 +31,7 @@ public class UserTest {
   }
 
   @Test
-  public void shouldThrowExceptionOnFirstNameAbsent() {
+  public void getFullNameShouldThrowExceptionOnFirstNameAbsent() {
     // given
     user.setLastName("b");
     // when-then
@@ -37,12 +40,44 @@ public class UserTest {
   }
 
   @Test
-  public void shouldThrowExceptionOnLastNameAbsent() {
+  public void getFullNameShouldThrowExceptionOnLastNameAbsent() {
     // given
     user.setFirstName("a");
     // when-then
     expectedException.expect(IllegalStateException.class);
     user.getFullName();
+  }
+
+  @Test
+  public void getAgeShouldThrowExceptionOnBirthDateIsFuture() {
+    // given
+    Calendar futureDate = Calendar.getInstance();
+    //setting future date
+    futureDate.add(Calendar.YEAR, 2);
+    user.setDateBirth(futureDate.getTime());
+    // when-then
+    expectedException.expect(IllegalStateException.class);
+    user.getAge();
+  }
+  
+  @Test
+  public void getAgeShouldThrowExceptionOnNullBirthDate() {
+    // given
+    // when-then
+    expectedException.expect(IllegalStateException.class);
+    user.getAge();
+  }
+  
+  @Test
+  public void getAgeShouldReturnValidAge() {
+    // given
+    Calendar futureDate = Calendar.getInstance();
+    //setting future date
+    futureDate.add(Calendar.YEAR, 2);
+    user.setDateBirth(futureDate.getTime());
+    // when-then
+    expectedException.expect(IllegalStateException.class);
+    user.getAge();
   }
 
   @After

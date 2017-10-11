@@ -12,7 +12,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<log4jcore-version>2.8.2</log4jcore-version>
 		<log4jAPI-version>2.8.2</log4jAPI-version>
-		<hibernate-version>5.1.0.Final</hibernate-version>
 	</properties>
 
 	<dependencies>

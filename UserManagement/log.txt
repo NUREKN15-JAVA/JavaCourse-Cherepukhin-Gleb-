@@ -1,0 +1,7 @@
+     [echo] Pre-initializing started on 11/10/2017 06:45:45
+     [echo] Pre-initializing finished
+     [echo] Setting classpathes
+     [echo] Cleanage started
+   [delete] Deleting directory C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build
+   [delete] Deleting directory C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\dist
+     [echo] Cleanage finished

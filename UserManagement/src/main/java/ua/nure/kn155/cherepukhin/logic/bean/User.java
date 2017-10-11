@@ -1,5 +1,6 @@
 package ua.nure.kn155.cherepukhin.logic.bean;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class User {
@@ -57,6 +58,21 @@ public class User {
     StringBuilder fullName = new StringBuilder();
     fullName.append(firstName).append(", ").append(lastName);
     return fullName.toString();
+  }
+
+  public int getAge() throws IllegalStateException {
+    if(dateBirth == null) {
+      throw new IllegalStateException("Birth date is not defined!");
+    }
+    Calendar currentDate = Calendar.getInstance();
+    Calendar dateBirth = Calendar.getInstance();
+    dateBirth.setTime(this.dateBirth);
+
+    int years = currentDate.get(Calendar.YEAR) - dateBirth.get(Calendar.YEAR);
+    if (years < 0) {
+      throw new IllegalStateException("Age is negative!");
+    }
+    return years;
   }
 
 }
