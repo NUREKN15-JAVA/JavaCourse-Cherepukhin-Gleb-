@@ -1,32 +1,6 @@
-     [echo] Pre-initializing started on 11/10/2017 08:22:40
+     [echo] Pre-initializing started on 11/10/2017 09:43:01
      [echo] Pre-initializing finished
      [echo] Setting classpathes
      [echo] Cleanage started
-   [delete] Deleting directory C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build
    [delete] Deleting directory C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\dist
      [echo] Cleanage finished
-     [echo] Initializing started
-    [mkdir] Created dir: C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build
-    [mkdir] Created dir: C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\dist
-    [mkdir] Created dir: C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\dist\javadoc
-    [mkdir] Created dir: C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\dist\report
-     [echo] Initializing finished
-     [echo] Compilation started
-    [javac] Compiling 1 source file to C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build
-    [javac] Compiling 1 source file to C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build
-     [echo] Compilation finished
-     [echo] Testing started
-    [junit] Running ua.nure.kn155.cherepukhin.logic.bean.UserTest
-    [junit] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,023 sec
-     [echo] Testing finished
-     [echo] Packaging started
-  [javadoc] Generating Javadoc
-  [javadoc] Javadoc execution
-  [javadoc] Loading source files for package ua.nure.kn155.cherepukhin.logic.bean...
-  [javadoc] Constructing Javadoc information...
-  [javadoc] Standard Doclet version 1.8.0_131
-  [javadoc] Building tree for all the packages and classes...
-  [javadoc] Building index for all the packages and classes...
-  [javadoc] Building index for all classes...
-      [jar] Building jar: C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\dist\UserManagement#1.jar
-     [echo] Packaging finished on 11/10/2017 08:22:41
