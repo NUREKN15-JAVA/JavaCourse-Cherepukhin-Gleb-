@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="DESKTOP-VEGKTUD" name="ua.nure.kn155.cherepukhin.logic.bean.UserTest" skipped="0" tests="6" time="0.023" timestamp="2017-10-11T15:22:40">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="lib.dir" value="lib" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="eclipse.pdebuild.templates" value="/C:/Users/Gleb/.p2/pool/plugins/org.eclipse.pde.build_3.9.200.v20160204-0642/templates/" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="ant.file.type.UserManagement#1" value="file" />
+    <property name="os.name" value="Windows 10" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jre1.8.0_131\lib\resources.jar;C:\Program Files\Java\jre1.8.0_131\lib\rt.jar;C:\Program Files\Java\jre1.8.0_131\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_131\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_131\lib\jce.jar;C:\Program Files\Java\jre1.8.0_131\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_131\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_131\classes" />
+    <property name="TODAY" value="October 11 2017" />
+    <property name="user.country.format" value="RU" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327" />
+    <property name="java.runtime.version" value="1.8.0_131-b11" />
+    <property name="user.name" value="Gleb" />
+    <property name="user.language.format" value="ru" />
+    <property name="properties.file.nonavailable" value="" />
+    <property name="build.dir" value="build" />
+    <property name="user.language" value="en" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_131\bin" />
+    <property name="ant.project.default-target" value="dist" />
+    <property name="ant.project.name" value="UserManagement#1" />
+    <property name="DSTAMP" value="20171011" />
+    <property name="java.version" value="1.8.0_131" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jre1.8.0_131\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="log.file" value="log.txt" />
+    <property name="java.class.version" value="52.0" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="C:\Program Files\Java\jre1.8.0_131" />
+    <property name="dist.dir" value="dist" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build.xml" />
+    <property name="os.version" value="10.0" />
+    <property name="properties.file.available" value="" />
+    <property name="test.fail" value="false" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="25.131-b11" />
+    <property name="report.dir" value="dist/report" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib" />
+    <property name="dist.jar.location" value="dist/UserManagement#1.jar" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="user.script" value="" />
+    <property name="eclipse.pdebuild.scripts" value="/C:/Users/Gleb/.p2/pool/plugins/org.eclipse.pde.build_3.9.200.v20160204-0642/scripts/" />
+    <property name="user.home" value="C:\Users\Gleb" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="test.error" value="false" />
+    <property name="test.dir" value="src/test/java" />
+    <property name="java.library.path" value="Z:\Software\Programs\eclipse\eclipse;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_131/bin/server;C:/Program Files/Java/jre1.8.0_131/bin;C:/Program Files/Java/jre1.8.0_131/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Rational\common;Z:\Software\Programs\JDK\bin;C:\Program Files (x86)\Inno Setup 5;Z:\Software\Programs\Git\cmd;Z:\Software\Programs\MVN\bin;Z:\Software\Programs\ANT\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\SysWOW64\WindowsPowerShell\v1.0\Modules\TShell\TShell\;Z:\Software\JDK\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;C:\Users\Gleb\Desktop;;.;Z:\Software\Programs\eclipse\eclipse\configuration\org.eclipse.osgi\650\0\.cp" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner -Dorg.eclipse.ant.core.ANT_PROCESS_ID=1507735360038 -Declipse.connect.port=54927 -Declipse.pdebuild.home=/C:/Users/Gleb/.p2/pool/plugins/org.eclipse.pde.build_3.9.200.v20160204-0642/./ -Declipse.pdebuild.scripts=/C:/Users/Gleb/.p2/pool/plugins/org.eclipse.pde.build_3.9.200.v20160204-0642/scripts/ -Declipse.pdebuild.templates=/C:/Users/Gleb/.p2/pool/plugins/org.eclipse.pde.build_3.9.200.v20160204-0642/templates/ -Dant.home=C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327 -logger org.eclipse.ant.internal.launching.remote.logger.RemoteAntBuildLogger -inputhandler org.eclipse.ant.internal.ui.antsupport.inputhandler.ProxyInputHandler -buildfile C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build.xml" />
+    <property name="java.class.path" value="C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-antlr.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-bcel.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-bsf.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-log4j.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-oro.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-regexp.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-resolver.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-apache-xalan2.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-commons-logging.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-commons-net.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-jai.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-javamail.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-jdepend.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-jmf.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-jsch.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-junit4.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-launcher.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-netrexx.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-swing.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant-testutil.jar;C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar;Z:\Software\Programs\eclipse\eclipse\configuration\org.eclipse.osgi\61\0\.cp\lib\antdebug.jar;Z:\Software\Programs\eclipse\eclipse\configuration\org.eclipse.osgi\61\0\.cp\lib\remote.jar;Z:\Software\Programs\eclipse\eclipse\configuration\org.eclipse.osgi\62\0\.cp\lib\remoteAnt.jar;Z:\Software\JDK\lib\tools.jar;C:\Users\Gleb\.p2\pool\plugins\org.eclipse.swt.win32.win32.x86_64_3.105.3.v20170228-0512.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.6 compiled on June 29 2015" />
+    <property name="TSTAMP" value="0822" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="eclipse.pdebuild.home" value="/C:/Users/Gleb/.p2/pool/plugins/org.eclipse.pde.build_3.9.200.v20160204-0642/./" />
+    <property name="java.io.tmpdir" value="C:\Users\Gleb\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="ant.file.UserManagement#1" value="C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement\build.xml" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jre1.8.0_131\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
+    <property name="TIME_START" value="11/10/2017 08:22:40" />
+    <property name="user.dir" value="C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="C:\Users\Gleb\git\JavaCourse-Cherepukhin-Gleb-\UserManagement" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="C:\Users\Gleb\.p2\pool\plugins\org.apache.ant_1.9.6.v201510161327\lib\ant.jar" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="build.properties.file" value="build.properties" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="src.dir" value="src/main/java" />
+    <property name="ant.project.invoked-targets" value="dist" />
+    <property name="javadoc.dir" value="dist/javadoc" />
+    <property name="" value="true" />
+  </properties>
+  <testcase classname="ua.nure.kn155.cherepukhin.logic.bean.UserTest" name="getAgeShouldThrowExceptionOnNullBirthDate" time="0.007" />
+  <testcase classname="ua.nure.kn155.cherepukhin.logic.bean.UserTest" name="getAgeShouldThrowExceptionOnBirthDateIsFuture" time="0.0" />
+  <testcase classname="ua.nure.kn155.cherepukhin.logic.bean.UserTest" name="getFullNameShouldReturnFullName" time="0.0" />
+  <testcase classname="ua.nure.kn155.cherepukhin.logic.bean.UserTest" name="getFullNameShouldThrowExceptionOnLastNameAbsent" time="0.0" />
+  <testcase classname="ua.nure.kn155.cherepukhin.logic.bean.UserTest" name="getAgeShouldReturnValidAge" time="0.0" />
+  <testcase classname="ua.nure.kn155.cherepukhin.logic.bean.UserTest" name="getFullNameShouldThrowExceptionOnFirstNameAbsent" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

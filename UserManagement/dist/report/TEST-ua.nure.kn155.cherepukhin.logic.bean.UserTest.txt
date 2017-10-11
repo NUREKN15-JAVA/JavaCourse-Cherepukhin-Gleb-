@@ -1,0 +1,9 @@
+Testsuite: ua.nure.kn155.cherepukhin.logic.bean.UserTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,023 sec
+
+Testcase: getAgeShouldThrowExceptionOnNullBirthDate took 0,006 sec
+Testcase: getAgeShouldThrowExceptionOnBirthDateIsFuture took 0 sec
+Testcase: getFullNameShouldReturnFullName took 0 sec
+Testcase: getFullNameShouldThrowExceptionOnLastNameAbsent took 0 sec
+Testcase: getAgeShouldReturnValidAge took 0 sec
+Testcase: getFullNameShouldThrowExceptionOnFirstNameAbsent took 0 sec

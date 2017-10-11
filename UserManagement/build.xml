@@ -78,11 +78,11 @@
 		<record name="${log.file}" action="start" />
 		<echo level="info" message="Compilation started" />
 		<!--Compiling project sources-->
-		<javac srcdir="${src.dir}" destdir="${build.dir}" encoding="utf-8">
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" encoding="utf-8">
 
 		</javac>
 		<!--Compiling project test sources-->
-		<javac srcdir="${test.dir}" destdir="${build.dir}" encoding="utf-8">
+		<javac includeantruntime="false" srcdir="${test.dir}" destdir="${build.dir}" encoding="utf-8">
 			<classpath refid="classpath" />
 			<classpath refid="testclasses" />
 		</javac>
