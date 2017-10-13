@@ -71,13 +71,12 @@ public class UserTest {
   @Test
   public void getAgeShouldReturnValidAge() {
     // given
-    Calendar futureDate = Calendar.getInstance();
-    //setting future date
-    futureDate.add(Calendar.YEAR, 2);
-    user.setDateBirth(futureDate.getTime());
+    Calendar dateBirth = Calendar.getInstance();
+    //setting date of birth as current date -2 years. why 2? don't know
+    dateBirth.add(Calendar.YEAR, -2);
+    user.setDateBirth(dateBirth.getTime());
     // when-then
-    expectedException.expect(IllegalStateException.class);
-    user.getAge();
+    assertEquals(2,user.getAge());
   }
 
   @After
