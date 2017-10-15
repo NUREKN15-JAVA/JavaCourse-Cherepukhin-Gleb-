@@ -96,10 +96,13 @@
 		<junit printsummary="yes" haltonfailure="true" errorproperty="test.error" failureproperty="test.fail">
 			<classpath refid="classpath" />
 			<classpath refid="testclasses" />
-			<test name="ua.nure.kn155.cherepukhin.logic.bean.UserTest" todir="${report.dir}">
-				<formatter type="plain" />
+			<batchtest todir="${report.dir}">
 				<formatter type="xml" />
-			</test>
+				<formatter type="plain" />
+				<fileset dir="${build.dir}" defaultexcludes="false">
+					<include name="**/*Test.*" />
+				</fileset>
+			</batchtest>
 		</junit>
 		<echo level="info" message="Testing finished" />
 		<record name="${log.file}" action="stop" />
