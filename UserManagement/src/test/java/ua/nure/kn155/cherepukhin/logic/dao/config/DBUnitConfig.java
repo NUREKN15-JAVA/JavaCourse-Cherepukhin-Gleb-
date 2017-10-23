@@ -2,8 +2,6 @@ package ua.nure.kn155.cherepukhin.logic.dao.config;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +36,7 @@ public abstract class DBUnitConfig<E> extends DBTestCase {
     try {
       properties.load(Thread.currentThread().getContextClassLoader()
           .getResourceAsStream("db.config.properties"));
-      Class.forName(properties.getProperty("db.driver"));
+      Class.forName("org.h2.Driver");
       System.out.println("DRIVER REGISTRED!");
       connectionManager = ConnectionManager.getInstance(properties.getProperty("db.url"),
           properties.getProperty("db.username"), properties.getProperty("db.password"),
@@ -54,6 +52,11 @@ public abstract class DBUnitConfig<E> extends DBTestCase {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
+  }
+
+  @Before
+  public void setUp() throws Exception {
     System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS,
         properties.getProperty("db.driver"));
     System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL,
@@ -63,14 +66,11 @@ public abstract class DBUnitConfig<E> extends DBTestCase {
     System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD,
         properties.getProperty("db.password"));
     System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_SCHEMA, "");
-  }
-
-
-  @Before
-  public void setUp() throws Exception {
     dsBuilder = new DataSetBuilder();
-    tester = new JdbcDatabaseTester(properties.getProperty("db.driver"),
-        properties.getProperty("db.url"), properties.getProperty("db.username"),
+    tester = new JdbcDatabaseTester(
+        properties.getProperty("db.driver"),
+        properties.getProperty("db.url"),
+        properties.getProperty("db.username"),
         properties.getProperty("db.password"));
 
     /*
@@ -101,6 +101,7 @@ public abstract class DBUnitConfig<E> extends DBTestCase {
      * properties.getProperty("db.username"), properties.getProperty("db.password"))) {
      * c.createStatement().execute("SET REFERENTIAL_INTEGRITY TRUE;"); }
      */
+    
   }
 
   public IDataSet buildDataSetOfList(List<E> list, Class<E> clazz) throws DataSetException {

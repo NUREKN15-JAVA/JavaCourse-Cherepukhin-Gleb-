@@ -25,9 +25,9 @@ public class ConnectionManager implements IConnectionManager {
   /**
    * 
    * @param url of database
-   * @param useraname for database
-   * @param password for database
-   * @param driverName for JDBC
+   * @param user: name of user for database
+   * @param password; password to database
+   * @param driverName: full  JDBCDriver class name
    * @return current Implementation of connection manager
    */
   public static IConnectionManager getInstance(String url, String user, String password,

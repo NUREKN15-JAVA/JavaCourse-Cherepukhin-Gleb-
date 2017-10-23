@@ -30,6 +30,7 @@
 		<echo level="info" message="Loading properties by default" />
 		<property name="build.dir" location="build" />
 		<property name="src.dir" location="src" />
+		<property name="resources.dir" location="resources" />
 		<property name="lib.dir" location="lib" />
 		<property name="dist.dir" location="dist" />
 		<property name="test.dir" location="test" />
@@ -45,10 +46,11 @@
 		<path id="classpath">
 			<fileset dir="${lib.dir}">
 				<include name="*.jar" />
-			</fileset>
+			</fileset>			
 		</path>
 		<path id="testclasses" location="${lib.dir}">
 			<pathelement location="${build.dir}" />
+			<pathelement location="${testresources.dir}"/>
 		</path>
 		<record name="${log.file}" action="stop" />
 	</target>
@@ -79,7 +81,7 @@
 		<echo level="info" message="Compilation started" />
 		<!--Compiling project sources-->
 		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" encoding="utf-8">
-
+			<classpath refid="classpath" />
 		</javac>
 		<!--Compiling project test sources-->
 		<javac includeantruntime="false" srcdir="${test.dir}" destdir="${build.dir}" encoding="utf-8">
@@ -116,7 +118,7 @@
 				<include name="**/*Test.*" />
 			</fileset>
 		</delete>
-		<javadoc sourcepath="${src.dir}" destdir="${javadoc.dir}" encoding="utf-8" access="private" verbose="false">
+		<javadoc sourcepath="${src.dir}" classpathref="classpath" destdir="${javadoc.dir}" encoding="utf-8" access="private" verbose="false">
 		</javadoc>
 		<jar destfile="${dist.jar.location}" basedir="${build.dir}">
 			<manifest>

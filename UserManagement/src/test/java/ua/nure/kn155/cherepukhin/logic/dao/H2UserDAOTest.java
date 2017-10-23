@@ -5,14 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.dbunit.Assertion;
-import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.internal.runners.JUnit4ClassRunner;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 
 import ua.nure.kn155.cherepukhin.db.DatabaseException;
 import ua.nure.kn155.cherepukhin.logic.bean.User;
@@ -173,7 +168,5 @@ public class H2UserDAOTest extends DBUnitConfig<User> implements CRUDTester {
       fail();
     } catch (DatabaseException e) {}
   }
-
-
 
 }

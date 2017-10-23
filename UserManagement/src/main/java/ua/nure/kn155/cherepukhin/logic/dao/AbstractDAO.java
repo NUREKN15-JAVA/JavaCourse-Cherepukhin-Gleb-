@@ -18,7 +18,7 @@ public interface AbstractDAO<K extends Serializable, E> {
   /**
    * 
    * @return list of entities from table {@code [ENTITY_NAME]}
-   * @throws DatabaseException
+   * @throws DatabaseException if something went wrong
    */
   public abstract List<E> getAll() throws DatabaseException;
 
