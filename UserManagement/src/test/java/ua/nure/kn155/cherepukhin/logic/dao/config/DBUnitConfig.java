@@ -130,15 +130,4 @@ public abstract class DBUnitConfig<E> extends DBTestCase {
   private List<Field> getFields(Class<E> clazz) {
     return Arrays.asList((clazz.getDeclaredFields()));
   }
-
-  protected abstract void testGetAll() throws Exception;
-
-  protected abstract void testGetByKey() throws Exception;
-
-  protected abstract void testCreate() throws Exception;
-
-  protected abstract void testDelete() throws Exception;
-
-  protected abstract void testUpdate() throws Exception;
-
 }

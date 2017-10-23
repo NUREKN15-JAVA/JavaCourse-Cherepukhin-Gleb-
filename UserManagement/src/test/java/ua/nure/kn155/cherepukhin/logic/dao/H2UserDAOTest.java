@@ -1,20 +1,25 @@
 package ua.nure.kn155.cherepukhin.logic.dao;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
 import org.dbunit.Assertion;
+import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.internal.runners.JUnit4ClassRunner;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 
+import ua.nure.kn155.cherepukhin.db.DatabaseException;
 import ua.nure.kn155.cherepukhin.logic.bean.User;
 import ua.nure.kn155.cherepukhin.logic.dao.config.DBUnitConfig;
 import ua.nure.kn155.cherepukhin.logic.dao.impl.H2UserDAO;
 
-public class H2UserDAOTest extends DBUnitConfig<User> {
+public class H2UserDAOTest extends DBUnitConfig<User> implements CRUDTester {
 
   public H2UserDAO userDAO;
 
@@ -56,7 +61,7 @@ public class H2UserDAOTest extends DBUnitConfig<User> {
 
   @Test
   @Override
-  public void testDelete() throws SQLException, Exception {
+  public void testDelete() throws Exception {
     // given
     User userToDelete = new User();
     userToDelete.setId(4L);
@@ -77,19 +82,19 @@ public class H2UserDAOTest extends DBUnitConfig<User> {
 
   @Test
   @Override
-  public void testUpdate() throws SQLException, Exception {
+  public void testUpdate() throws Exception {
     // given
-    User userToDelete = new User();
-    userToDelete.setId(1L);
-    userToDelete.setFirstName("aaa");
-    userToDelete.setLastName("bbb");
-    userToDelete.setDateBirth(new SimpleDateFormat("dd.MM.yyyy").parse("24.09.2015"));
+    User userToUpdate = new User();
+    userToUpdate.setId(1L);
+    userToUpdate.setFirstName("aaa");
+    userToUpdate.setLastName("bbb");
+    userToUpdate.setDateBirth(new SimpleDateFormat("dd.MM.yyyy").parse("24.09.2015"));
 
     IDataSet expectedData = new FlatXmlDataSetBuilder().build(Thread.currentThread()
         .getContextClassLoader().getResourceAsStream("entities/user-data-update.xml"));
 
     // when
-    boolean resultOfupdateOperation = userDAO.update(userToDelete);
+    boolean resultOfupdateOperation = userDAO.update(userToUpdate);
 
     // then
     assertEquals(true, resultOfupdateOperation);
@@ -125,5 +130,50 @@ public class H2UserDAOTest extends DBUnitConfig<User> {
     // then
     Assertion.assertEquals(expectedData, actualData);
   }
+
+  public void testUpdateOnNonExistingEntity() throws Exception {
+    // given
+    User userToUpdate = new User();
+    userToUpdate.setId(999L);
+    userToUpdate.setFirstName("aaa");
+    userToUpdate.setLastName("bbb");
+    userToUpdate.setDateBirth(new SimpleDateFormat("dd.MM.yyyy").parse("24.09.2015"));
+
+    IDataSet expectedData = new FlatXmlDataSetBuilder().build(Thread.currentThread()
+        .getContextClassLoader().getResourceAsStream("entities/user-data.xml"));
+
+    // when
+    boolean resultOfupdateOperation = userDAO.update(userToUpdate);
+
+    // then
+    assertEquals(false, resultOfupdateOperation);
+    IDataSet actualData = tester.getConnection().createDataSet();
+    Assertion.assertEquals(expectedData, actualData);
+  }
+
+  @Test
+  public void testDeleteOnNonExistingEntity() throws Exception {
+    // given
+    User userToDelete = new User();
+    userToDelete.setId(999L);
+    userToDelete.setFirstName("d");
+    userToDelete.setLastName("e");
+    userToDelete.setDateBirth(new SimpleDateFormat("dd.MM.yyyy").parse("24.09.1997"));
+    // when
+    boolean resultOfDeleteOperation = userDAO.delete(userToDelete);
+    // then
+    assertFalse(resultOfDeleteOperation);
+  }
+
+  @Test
+  public void testSelectByKeyOnNonExisitingEntity() {
+    // given-when-then
+    try {
+      User fetchedUser = userDAO.getById(999L);
+      fail();
+    } catch (DatabaseException e) {}
+  }
+
+
 
 }
