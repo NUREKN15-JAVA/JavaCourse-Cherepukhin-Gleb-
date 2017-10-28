@@ -117,4 +117,9 @@ public class H2UserDAO implements UserDAO {
     }
   }
 
+  @Override
+  public void setConnectionManager(IConnectionManager connectionManager) {
+    this.connectionManager = connectionManager;
+  }
+
 }

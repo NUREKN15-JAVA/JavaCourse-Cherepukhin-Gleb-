@@ -6,10 +6,13 @@ import ua.nure.kn155.cherepukhin.logic.dao.UserDAO;
 
 public class H2DAOFactory implements DAOFactory {
 
-  private IConnectionManager connectionManager;
+  private UserDAO userDAO;
 
-  public H2DAOFactory(IConnectionManager connectionManager) {
-    this.connectionManager = connectionManager;
+  public H2DAOFactory(IConnectionManager connectionManager) {}
+
+  @Override
+  public UserDAO getUserDAO(Class<?> daoImplClass) {
+    return null;
   }
 
   @Override

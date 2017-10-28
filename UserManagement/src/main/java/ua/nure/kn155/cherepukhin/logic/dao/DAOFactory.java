@@ -16,7 +16,11 @@ public interface DAOFactory {
         return null;
     }
   }
-  
+
+  @Deprecated
   UserDAO getUserDAO();
 
+  UserDAO getUserDAO(Class<?> daoImplClass);
+  
+  // TODO add reflection
 }
