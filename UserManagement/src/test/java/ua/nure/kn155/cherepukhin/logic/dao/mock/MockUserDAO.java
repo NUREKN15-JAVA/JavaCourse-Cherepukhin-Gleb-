@@ -21,8 +21,7 @@ public class MockUserDAO implements UserDAO {
 
   @Override
   public User getById(Long id) throws DatabaseException {
-    // TODO Auto-generated method stub
-    return null;
+    return users.get(id);
   }
 
   @Override
@@ -49,7 +48,13 @@ public class MockUserDAO implements UserDAO {
 
   @Override
   public void setConnectionManager(IConnectionManager connectionManager) {
-    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException();
+  }
 
+  public void setUpValues(List<User> users) {
+      this.users.clear();
+      users.forEach(user -> {
+        this.users.put(user.getId(), user);
+      });
   }
 }

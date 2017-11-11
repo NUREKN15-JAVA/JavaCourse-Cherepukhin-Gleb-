@@ -12,12 +12,15 @@ public class MockDAOFactory extends DAOFactory2 {
     mockUserDAO = new Mock(UserDAO.class);
   }
 
-  @Override
-  public UserDAO getUserDAO(Class<?> daoImplClass) {
-    return (UserDAO) mockUserDAO.proxy();
-  }
-
   public Mock getMockUserDAO() {
     return mockUserDAO;
+  }
+  
+  @Override
+  public synchronized UserDAO getUserDAO() {
+    if (userDAO == null) {
+      userDAO = new MockUserDAO();
+    }
+    return userDAO;
   }
 }

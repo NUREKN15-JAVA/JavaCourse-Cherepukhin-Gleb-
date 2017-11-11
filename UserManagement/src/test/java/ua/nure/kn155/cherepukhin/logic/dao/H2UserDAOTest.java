@@ -20,7 +20,8 @@ public class H2UserDAOTest extends DBUnitConfig<User> implements CRUDTester {
 
   public H2UserDAOTest(String name) {
     super(name);
-    userDAO = new H2UserDAO(connectionManager);
+    userDAO = new H2UserDAO();
+    userDAO.setConnectionManager(connectionManager);
   }
 
   @Override

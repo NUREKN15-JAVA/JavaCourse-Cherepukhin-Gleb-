@@ -19,7 +19,8 @@ public class H2UserDAOEmptyDBTest extends DBUnitConfig<User> {
 
   public H2UserDAOEmptyDBTest(String name) {
     super(name);
-    userDAO = new H2UserDAO(connectionManager);
+    userDAO = new H2UserDAO();
+    userDAO.setConnectionManager(connectionManager);
   }
 
   @Override
