@@ -3,6 +3,7 @@ package ua.nure.kn155.cherepukhin.logic.dao;
 import ua.nure.kn155.cherepukhin.db.IConnectionManager;
 import ua.nure.kn155.cherepukhin.logic.dao.impl.H2DAOFactory;
 
+@Deprecated
 public interface DAOFactory {
 
   public static final int H2_FACTORY = 0;
@@ -17,10 +18,8 @@ public interface DAOFactory {
     }
   }
 
-  @Deprecated
+  
   UserDAO getUserDAO();
-
-  UserDAO getUserDAO(Class<?> daoImplClass);
   
   // TODO add reflection
 }

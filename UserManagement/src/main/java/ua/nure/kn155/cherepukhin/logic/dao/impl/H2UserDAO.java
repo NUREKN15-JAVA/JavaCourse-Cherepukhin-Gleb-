@@ -28,9 +28,7 @@ public class H2UserDAO implements UserDAO {
   private static final String DELETE_QUERRY = "DELETE FROM USER WHERE USER.id = ?";
   private IConnectionManager connectionManager;
 
-  public H2UserDAO(IConnectionManager connectionManager) {
-    this.connectionManager = connectionManager;
-  }
+  public H2UserDAO() {}
 
   @Override
   public List<User> getAll() throws DatabaseException {

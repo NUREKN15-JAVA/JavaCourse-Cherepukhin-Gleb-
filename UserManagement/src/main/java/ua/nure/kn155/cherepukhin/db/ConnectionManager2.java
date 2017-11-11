@@ -12,24 +12,31 @@ public class ConnectionManager2 implements IConnectionManager{
   private String driver;
 
   public ConnectionManager2(Properties properties) {
-   this.url = properties.getProperty("db.url");
-   this.user = properties.getProperty("db.user");
+   parseDBURL(properties.getProperty("db.url"),properties.getProperty("db.file.extension"));
+   this.user = properties.getProperty("db.login");
    this.password = properties.getProperty("db.password");
    this.driver = properties.getProperty("db.driver");
   }
 
   @Override
-  public void close() throws Exception {
-    
-  }
+  public void close() throws Exception {}
 
   @Override
   public Connection getConnection() throws DatabaseException {
     try {
-      Class.forName(driver);
+      Class.forName("org.h2.Driver");
       return DriverManager.getConnection(url, user, password);
     } catch (Exception ex) {
       throw new DatabaseException(ex);
+    }
+  }
+  
+  private  void parseDBURL(String dbURL, String fileExt) {
+    if(dbURL.startsWith("jdbc:")) {
+      this.url = dbURL;
+    } else {
+      this.url = "jdbc:h2:" + Thread.currentThread().getContextClassLoader().getResource(dbURL+fileExt).getPath().replace(fileExt, "");
+      System.out.println(this.url);
     }
   }
 

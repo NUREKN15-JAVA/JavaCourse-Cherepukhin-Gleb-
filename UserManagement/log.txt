@@ -1,4 +1,4 @@
-     [echo] Pre-initializing started on 23/10/2017 13:59:42
+     [echo] Pre-initializing started on 11/11/2017 04:32:19
      [echo] Pre-initializing finished
      [echo] Setting classpathes
      [echo] Cleanage started
