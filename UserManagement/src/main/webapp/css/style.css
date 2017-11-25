@@ -1,0 +1,87 @@
+body {
+	background: #2c3338;
+	color: white;
+}
+
+#content {
+	width: 100%;
+}
+
+#content>div {
+	width: 100%;
+	margin: 10px;
+}
+
+#content>div table {
+	width: 36%;
+	margin: auto;
+}
+
+#userTable thead td {
+	font-style: italic;
+	font-weight: bold;
+}
+
+#userTable td {
+	text-align: center;
+}
+
+.red-border {
+	border: 1px solid red;
+	box-sizing: border-box;
+}
+
+.error-panel {
+	background: red;
+	color: white;
+	border-radius: 3px;
+	text-align: center;
+	padding: 10px 0;
+}
+
+.btn {
+	-moz-border-radius: 28px;
+	-webkit-border-radius: 28px;
+	border-radius: 28px;
+	font-family: Arial;
+	font-size: 17px;
+	padding: 5px 10px;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline;
+}
+
+#addBtn {
+	background-color: #44c767;
+	border: 1px solid #18ab29;
+	color: #ffffff;
+	text-shadow: 0px 1px 0px #2f6627;
+}
+
+#editBtn {
+	background-color: #768d87;
+	border: 1px solid #566963;
+	color: #ffffff;
+	text-shadow: 0px 1px 0px #2b665e;
+}
+
+#detailsBtn {
+	background-color: #60b5bd;
+	border: 1px solid #62bbd1;
+	color: #ffffff;
+	text-shadow: 0px 1px 0px #2f6627;
+}
+
+#deleteBtn {
+	background-color: #c74545;
+	border: 1px solid #ab5419;
+	color: #ffffff;
+	text-shadow: 0px 1px 0px #2f6627;
+}
+
+.select-active {
+	background: #7affc2;
+	transition-property: background;
+	transition-duration: 0.75s;
+	transition-timing-function: ease;
+}
