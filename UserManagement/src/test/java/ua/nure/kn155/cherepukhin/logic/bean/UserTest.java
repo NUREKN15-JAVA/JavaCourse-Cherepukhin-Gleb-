@@ -52,14 +52,14 @@ public class UserTest {
   public void getAgeShouldThrowExceptionOnBirthDateIsFuture() {
     // given
     Calendar futureDate = Calendar.getInstance();
-    //setting future date
+    // setting future date
     futureDate.add(Calendar.YEAR, 2);
     user.setDateBirth(futureDate.getTime());
     // when-then
     expectedException.expect(IllegalStateException.class);
     user.getAge();
   }
-  
+
   @Test
   public void getAgeShouldThrowExceptionOnNullBirthDate() {
     // given
@@ -67,16 +67,16 @@ public class UserTest {
     expectedException.expect(IllegalStateException.class);
     user.getAge();
   }
-  
+
   @Test
   public void getAgeShouldReturnValidAge() {
     // given
     Calendar dateBirth = Calendar.getInstance();
-    //setting date of birth as current date -2 years. why 2? don't know
+    // setting date of birth as current date -2 years. why 2? don't know
     dateBirth.add(Calendar.YEAR, -2);
     user.setDateBirth(dateBirth.getTime());
     // when-then
-    assertEquals(2,user.getAge());
+    assertEquals(2, user.getAge());
   }
 
   @After

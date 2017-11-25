@@ -8,13 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dbunit.DatabaseUnitException;
-import org.h2.jdbc.JdbcSQLException;
-
 import ua.nure.kn155.cherepukhin.db.DatabaseException;
 import ua.nure.kn155.cherepukhin.db.IConnectionManager;
 import ua.nure.kn155.cherepukhin.logic.bean.User;
-import ua.nure.kn155.cherepukhin.logic.dao.AbstractDAO;
 import ua.nure.kn155.cherepukhin.logic.dao.UserDAO;
 
 public class H2UserDAO implements UserDAO {
@@ -119,5 +115,12 @@ public class H2UserDAO implements UserDAO {
   public void setConnectionManager(IConnectionManager connectionManager) {
     this.connectionManager = connectionManager;
   }
+
+  @Override
+  public IConnectionManager getConnectionManager() {
+    return connectionManager;
+  }
+
+
 
 }

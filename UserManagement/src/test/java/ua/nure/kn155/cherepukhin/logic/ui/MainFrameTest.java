@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import junit.extensions.jfcunit.JFCTestCase;
@@ -38,6 +40,7 @@ import ua.nure.kn155.cherepukhin.logic.dao.mock.MockUserDAO;
 
 public class MainFrameTest extends JFCTestCase {
 
+  private final static Logger LOG = LogManager.getLogger(MainFrameTest.class);
   private static final String EMPTY_FIELD_VALUE = "";
   private Container mainFrame;
   private MockUserDAO mockUserDAO;
@@ -57,16 +60,15 @@ public class MainFrameTest extends JFCTestCase {
       Properties properties = new Properties();
       properties.setProperty("dao.factory", MockDAOFactory.class.getName());
       properties.setProperty("user.dao", MockUserDAO.class.getName());
-
       usersList = Collections.singletonList(theOnlyUser);
-
+      try{
       DAOFactory2.init(properties);
+      } catch(Throwable t){LOG.catching(t);}
       mockUserDAO = (MockUserDAO) DAOFactory2.getInstance().getUserDAO();
       mockUserDAO.setUpValues(usersList);
 
       setHelper(new JFCTestHelper());
       mainFrame = new MainFrame(DAOFactory2.getInstance());
-      System.out.println("MAIN FRAME BEFORE" + mainFrame);
     } catch (Exception ex) {
       ex.printStackTrace();
     }

@@ -57,4 +57,9 @@ public class MockUserDAO implements UserDAO {
         this.users.put(user.getId(), user);
       });
   }
+
+  @Override
+  public IConnectionManager getConnectionManager() {
+    throw new UnsupportedOperationException();
+  }
 }
