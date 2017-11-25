@@ -1,4 +1,4 @@
-<project name="UserManagement#1" default="dist">
+<project name="UserManagement" default="dist">
 	<property name="build.properties.file" value="build.properties" />
 	<property name="properties.file.nonavailable" value="" />
 	<property name="properties.file.available" value="" />
@@ -36,7 +36,6 @@
 		<property name="test.dir" location="test" />
 		<property name="javadoc.dir" location="${dist.dir}\javadoc" />
 		<property name="report.dir" location="${dist.dir}\report" />
-		<property name="dist.jar.location" location="${dist.dir}\${ant.project.name}.jar" />
 		<property name="Main-Class" value="Main" />
 	</target>
 
@@ -44,12 +43,15 @@
 		<record name="${log.file}" action="start" />
 		<echo level="info" message="Setting classpathes" />
 		<path id="classpath">
-			<pathelement location="${resources.dir}" />
+			<!-- <pathelement location="${resources.dir}" /> -->
 			<fileset dir="${lib.dir}">
 				<include name="*.jar" />
 			</fileset>
 		</path>
-		<path id="testclasses" location="${lib.dir}">
+		<path id="testclasspath">
+			<fileset dir="${lib.dir}/test">
+				<include name="*.jar" />
+			</fileset>
 			<pathelement location="${build.dir}" />
 			<pathelement location="${testresources.dir}" />
 			<pathelement location="${resources.dir}" />
@@ -57,7 +59,19 @@
 		<record name="${log.file}" action="stop" />
 	</target>
 
-	<target name="clean" depends="ant.classpathSet">
+	<target name="manifestMapClasspath" depends="ant.classpathSet">
+		<pathconvert property="manifest.classpath" pathsep=" ">
+			<path refid="classpath" />
+			<mapper>
+				<chainedmapper>
+					<flattenmapper />
+					<globmapper from="*.jar" to="lib/*.jar" />
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+	</target>
+
+	<target name="clean" depends="manifestMapClasspath">
 		<record name="${log.file}" action="start" />
 		<echo level="info" message="Cleanage started" />
 		<delete dir="${build.dir}" />
@@ -74,6 +88,9 @@
 		<mkdir dir="${dist.dir}" />
 		<mkdir dir="${javadoc.dir}" />
 		<mkdir dir="${report.dir}" />
+		<mkdir dir="${dist.jar.packaging}" />
+		<mkdir dir="${dist.jar.packaging.resources}" />
+		<mkdir dir="${dist.jar.packaging.lib}" />
 		<echo level="info" message="Initializing finished" />
 		<record name="${log.file}" action="stop" />
 	</target>
@@ -88,7 +105,7 @@
 		<!--Compiling project test sources-->
 		<javac includeantruntime="false" srcdir="${test.dir}" destdir="${build.dir}" encoding="utf-8">
 			<classpath refid="classpath" />
-			<classpath refid="testclasses" />
+			<classpath refid="testclasspath" />
 		</javac>
 		<echo level="info" message="Compilation finished" />
 		<record name="${log.file}" action="stop" />
@@ -99,12 +116,13 @@
 		<echo level="info" message="Testing started" />
 		<junit printsummary="yes" haltonfailure="true" errorproperty="test.error" failureproperty="test.fail">
 			<classpath refid="classpath" />
-			<classpath refid="testclasses" />
+			<classpath refid="testclasspath" />
 			<batchtest todir="${report.dir}">
 				<formatter type="xml" />
 				<formatter type="plain" />
 				<fileset dir="${build.dir}" defaultexcludes="false">
 					<include name="**/*Test.*" />
+					<exclude name="**/MainFrameTest.class" />
 				</fileset>
 			</batchtest>
 		</junit>
@@ -122,10 +140,11 @@
 		</delete>
 		<javadoc sourcepath="${src.dir}" classpathref="classpath" destdir="${javadoc.dir}" encoding="utf-8" access="private" verbose="false">
 		</javadoc>
-		<jar destfile="${dist.jar.location}" basedir="${build.dir}">
+		<!-- Build Jar distributive -->
+		<jar destfile="${dist.jar.packaging.file}" basedir="${build.dir}">
 			<!--Copy resources -->
 			<fileset dir="${resources.dir}">
-				<include name="**/*" />
+				<include name="*.properties" />
 			</fileset>
 			<manifest>
 				<!-- Who is building this jar? -->
@@ -135,13 +154,37 @@
 				<attribute name="Implementation-Title" value="UserManagement #1" />
 				<attribute name="Implementation-Version" value="1.0.0" />
 				<attribute name="Main-Class" value="${Main-Class}" />
-				<attribute name="Class-Path" value="lib/*.jar" />
+				<attribute name="Class-Path" value="${manifest.classpath}" />
 			</manifest>
 		</jar>
+		<copy todir="${dist.jar.packaging.resources}">
+			<fileset dir="${resources.dir}">
+				<include name="db/*" />
+			</fileset>
+		</copy>
+		<copy todir="${dist.jar.packaging.lib}">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+
+		<!-- Build WAR file -->
+		<war destfile="${dist.war.file}">
+			<classes dir="${build.dir}" />
+			<classes dir="${resources.dir}" />
+			<fileset dir="${webapp.dir}">
+				<include name="**/*" />
+			</fileset>
+			<lib dir="${lib.dir}" includes="*.jar" />
+		</war>
 		<tstamp>
 			<format property="TIME_FINISH" pattern="dd/MM/yyyy HH:mm:ss" />
 		</tstamp>
 		<echo level="info" message="Packaging finished on ${TIME_FINISH}" />
 		<record name="${log.file}" action="stop" />
+	</target>
+	<target name="deploy" depends="dist">
+		<copy file="${dist.war.file}" todir="${app.server.deploy.location}">
+		</copy>
 	</target>
 </project>
