@@ -68,7 +68,7 @@ public class MainFrameTest extends JFCTestCase {
       mockUserDAO.setUpValues(usersList);
 
       setHelper(new JFCTestHelper());
-      mainFrame = new MainFrame(DAOFactory2.getInstance());
+      mainFrame = new MainFrame(DAOFactory2.getInstance(),null);
     } catch (Exception ex) {
       ex.printStackTrace();
     }

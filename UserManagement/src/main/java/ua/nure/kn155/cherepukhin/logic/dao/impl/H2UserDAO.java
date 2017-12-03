@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import ua.nure.kn155.cherepukhin.db.DatabaseException;
@@ -15,13 +16,15 @@ import ua.nure.kn155.cherepukhin.logic.dao.UserDAO;
 
 public class H2UserDAO implements UserDAO {
 
-  private static final String SELECT_ALL_QUERRY = "SELECT * FROM USER";
-  private static final String SELECT_BY_KEY_QUERRY = "SELECT * FROM USER WHERE USER.id = ?";
-  private static final String INSERT_QUERRY =
+  private static final String SELECT_ALL_QUERY = "SELECT * FROM USER";
+  private static final String SELECT_BY_KEY_QUERY = "SELECT * FROM USER WHERE USER.id = ?";
+  private static final String INSERT_QUERY =
       "INSERT INTO USER(first_name,last_name,date_birth) VALUES(?,?,?)";
-  private static final String UPDATE_QUERRY =
+  private static final String UPDATE_QUERY =
       "UPDATE USER SET first_name = ?, last_name = ?,date_birth = ? WHERE USER.id = ?";
-  private static final String DELETE_QUERRY = "DELETE FROM USER WHERE USER.id = ?";
+  private static final String DELETE_QUERY = "DELETE FROM USER WHERE USER.id = ?";
+  private static final String SELECT_BY_NAME_QUERY =
+      "SEELCT * FROM USER WHERE USER.firstName = ? AND USER.lastName= ?";
   private IConnectionManager connectionManager;
 
   public H2UserDAO() {}
@@ -30,7 +33,7 @@ public class H2UserDAO implements UserDAO {
   public List<User> getAll() throws DatabaseException {
     try (Connection connection = connectionManager.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(SELECT_ALL_QUERRY)) {
+        ResultSet resultSet = statement.executeQuery(SELECT_ALL_QUERY)) {
       List<User> resultList = new ArrayList<>(resultSet.getFetchSize());
       while (resultSet.next()) {
         User user = new User();
@@ -49,7 +52,7 @@ public class H2UserDAO implements UserDAO {
   @Override
   public User getById(Long id) throws DatabaseException {
     try (Connection connection = connectionManager.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SELECT_BY_KEY_QUERRY)) {
+        PreparedStatement statement = connection.prepareStatement(SELECT_BY_KEY_QUERY)) {
       statement.setLong(1, id);
       ResultSet fetchedUser = statement.executeQuery();
       fetchedUser.next();
@@ -68,7 +71,7 @@ public class H2UserDAO implements UserDAO {
   public User create(User entity) throws DatabaseException {
     try (Connection connection = connectionManager.getConnection();
         PreparedStatement statement =
-            connection.prepareStatement(INSERT_QUERRY, Statement.RETURN_GENERATED_KEYS)) {
+            connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
       statement.setString(1, entity.getFirstName());
       statement.setString(2, entity.getLastName());
       statement.setDate(3, new java.sql.Date(entity.getDateBirth().getTime()));
@@ -89,7 +92,7 @@ public class H2UserDAO implements UserDAO {
   @Override
   public boolean update(User entity) throws DatabaseException {
     try (Connection connection = connectionManager.getConnection();
-        PreparedStatement statement = connection.prepareStatement(UPDATE_QUERRY)) {
+        PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY)) {
       statement.setString(1, entity.getFirstName());
       statement.setString(2, entity.getLastName());
       statement.setDate(3, new java.sql.Date(entity.getDateBirth().getTime()));
@@ -103,7 +106,7 @@ public class H2UserDAO implements UserDAO {
   @Override
   public boolean delete(User entity) throws DatabaseException {
     try (Connection connection = connectionManager.getConnection();
-        PreparedStatement statement = connection.prepareStatement(DELETE_QUERRY)) {
+        PreparedStatement statement = connection.prepareStatement(DELETE_QUERY)) {
       statement.setLong(1, entity.getId());
       return statement.executeUpdate() != 0;
     } catch (SQLException e) {
@@ -121,6 +124,33 @@ public class H2UserDAO implements UserDAO {
     return connectionManager;
   }
 
-
+  @Override
+  public Collection<User> find(String firstName, String lastName) throws DatabaseException {
+    ResultSet resultSet = null;
+    try (Connection connection = connectionManager.getConnection();
+        PreparedStatement statement = connection.prepareStatement(SELECT_BY_NAME_QUERY)) {
+      resultSet = statement.executeQuery();
+      statement.setString(1, firstName);
+      statement.setString(2, lastName);
+      List<User> resultList = new ArrayList<>(resultSet.getFetchSize());
+      while (resultSet.next()) {
+        User user = new User();
+        user.setId(resultSet.getLong("id"));
+        user.setFirstName(resultSet.getString("first_name"));
+        user.setLastName(resultSet.getString("last_name"));
+        user.setDateBirth(resultSet.getDate("date_birth"));
+        resultList.add(user);
+      }
+      return resultList;
+    } catch (SQLException e) {
+      throw new DatabaseException(e);
+    } finally {
+      try {
+        resultSet.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
 
 }

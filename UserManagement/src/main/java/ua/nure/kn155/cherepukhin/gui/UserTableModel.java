@@ -1,6 +1,8 @@
 package ua.nure.kn155.cherepukhin.gui;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -61,6 +63,10 @@ public class UserTableModel extends AbstractTableModel {
 
   public List<User> getListOfUsers() {
     return listOfUsers;
+  }
+  
+  public void addUsers(Collection<User> users) {
+    this.listOfUsers.addAll(users);
   }
   
 }

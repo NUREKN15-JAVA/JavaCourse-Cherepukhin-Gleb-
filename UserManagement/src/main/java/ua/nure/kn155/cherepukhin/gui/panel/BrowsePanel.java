@@ -47,6 +47,10 @@ public class BrowsePanel extends JPanel implements ActionListener {
   public static final String ADD_BUTTON_COMMAND = "add";
   public static final String ADD_BUTTON_TEXT = "Add";
 
+  public static final String SEARCH_BUTTON_NAME = "searchButton";
+  public static final String SEARCH_BUTTON_COMMAND = "search";
+  public static final String SEARCH_BUTTON_TEXT = "Search";
+
   private MainFrame parent;
   private JScrollPane tablePanel;
   private JPanel buttonPanel;
@@ -56,6 +60,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
   private JButton editButton;
   private JButton deleteButton;
   private JButton detailsButton;
+  private JButton searchButton;
 
   private User selectedUser;
 
@@ -134,6 +139,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
       buttonPanel.add(getEditButton());
       buttonPanel.add(getDeleteButton());
       buttonPanel.add(getDetailsButton());
+      buttonPanel.add(getSearchButton());
     }
     return buttonPanel;
   }
@@ -168,6 +174,16 @@ public class BrowsePanel extends JPanel implements ActionListener {
     return deleteButton;
   }
 
+  public JButton getSearchButton() {
+    if (searchButton == null) {
+      searchButton = new JButton(SEARCH_BUTTON_TEXT);
+      searchButton.setName(SEARCH_BUTTON_NAME);
+      searchButton.setActionCommand(SEARCH_BUTTON_COMMAND);
+      searchButton.addActionListener(this);
+    }
+    return deleteButton;
+  }
+
   public JButton getDetailsButton() {
     if (detailsButton == null) {
       detailsButton = new JButton(DETAILS_BUTTON_TEXT);
@@ -183,18 +199,21 @@ public class BrowsePanel extends JPanel implements ActionListener {
     String actionCommand = event.getActionCommand();
     if (actionCommand.equals(ADD_BUTTON_COMMAND)) {
       parent.showAddPanel();
+    } else if (actionCommand.equals(SEARCH_BUTTON_COMMAND)) {
+      parent.showSearchPanel();
     } else if (actionCommand.equals(EDIT_BUTTON_COMMAND)) {
       parent.showEditPanel(selectedUser);
     } else if (actionCommand.equals(DETAILS_BUTTON_COMMAND)) {
       parent.showDetailsPanel(selectedUser);
     } else if (actionCommand.equals(DELETE_BUTON_COMMAND)) {
       try {
-        int answer = JOptionPane.showConfirmDialog(this, "Delete selected user?","Confirmation",JOptionPane.YES_NO_OPTION);
+        int answer = JOptionPane.showConfirmDialog(this, "Delete selected user?", "Confirmation",
+            JOptionPane.YES_NO_OPTION);
         if (answer == JOptionPane.YES_OPTION) {
           parent.getUserDAO().delete(selectedUser);
           parent.showBrowsePanel();
         } else {
-          //do nothing
+          // do nothing
         }
       } catch (DatabaseException e) {
         e.printStackTrace();

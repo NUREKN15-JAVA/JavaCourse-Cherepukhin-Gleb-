@@ -1,6 +1,7 @@
 package ua.nure.kn155.cherepukhin.logic.dao.mock;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,4 +63,10 @@ public class MockUserDAO implements UserDAO {
   public IConnectionManager getConnectionManager() {
     throw new UnsupportedOperationException();
   }
+
+  @Override
+  public Collection<User> find(String fuirstNme, String lastName) {
+    throw new UnsupportedOperationException();
+  }
+  
 }

@@ -4,11 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import jade.wrapper.StaleProxyException;
+import ua.nure.kn155.cherepukhin.agent.SearchAgent;
 import ua.nure.kn155.cherepukhin.gui.panel.AddPanel;
 import ua.nure.kn155.cherepukhin.gui.panel.BrowsePanel;
 import ua.nure.kn155.cherepukhin.gui.panel.DetailsPanel;
@@ -28,13 +32,17 @@ public class MainFrame extends JFrame implements ActionListener {
   private AddPanel addPanel;
   private EditPanel editPanel;
   private DetailsPanel detailsPanel;
-  
+
   private UserDAO userDAO;
+  private SearchAgent agent;
+  private SearchGui searchPanel;
 
   public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-  
-  public MainFrame(DAOFactory2 daoFactory) {
+
+  public MainFrame(DAOFactory2 daoFactory, SearchAgent agent) {
     super();
+    this.agent = agent;
+    this.addWindowListener(new MainFrameCloser(agent));
     userDAO = daoFactory.getUserDAO();
     initialize();
     showBrowsePanel();
@@ -63,11 +71,11 @@ public class MainFrame extends JFrame implements ActionListener {
   public AddPanel getAddPanel() {
     return (addPanel == null) ? (addPanel = new AddPanel(this)) : addPanel;
   }
-  
+
   public EditPanel getEditPanel() {
     return (editPanel == null) ? (editPanel = new EditPanel(this)) : editPanel;
   }
-  
+
   public DetailsPanel getDetailsPanel() {
     return (detailsPanel == null) ? (detailsPanel = new DetailsPanel(this)) : detailsPanel;
   }
@@ -75,17 +83,17 @@ public class MainFrame extends JFrame implements ActionListener {
   public void showAddPanel() {
     showPanel(getAddPanel());
   }
-  
+
   public void showDetailsPanel(User user) {
     getDetailsPanel().setEditData(user);
     showPanel(getDetailsPanel());
   }
-  
+
   public void showEditPanel(User user) {
     getEditPanel().setEditData(user);
     showPanel(getEditPanel());
   }
-  
+
   public void showBrowsePanel() {
     getBrowsePanel().reinitializeModel();
     showPanel(getBrowsePanel());
@@ -99,19 +107,48 @@ public class MainFrame extends JFrame implements ActionListener {
     panel.repaint();
   }
 
+  public void showSearchPanel() {
+    showPanel(getSearchPanel());
+  }
+
+  public JPanel getSearchPanel() {
+    if (searchPanel == null) {
+      searchPanel = new SearchGui(agent, this);
+    }
+    return searchPanel;
+  }
+
   @Override
   public void actionPerformed(ActionEvent event) {
 
   }
-  
+
   public UserDAO getUserDAO() {
     return userDAO;
   }
 
   public static void main(String[] args) {
-    MainFrame frame = new MainFrame(DAOFactory2.getInstance());
+    MainFrame frame = new MainFrame(DAOFactory2.getInstance(), null);
     frame.setResizable(false);
     frame.setVisible(true);
+  }
+
+  private class MainFrameCloser extends WindowAdapter {
+    private SearchAgent agent;
+
+    public MainFrameCloser(SearchAgent agent) {
+      this.agent = agent;
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+      try {
+        agent.getContainerController().kill();
+      } catch (StaleProxyException e1) {
+        e1.printStackTrace();
+        System.exit(-1);
+      }
+    }
   }
 
 }
